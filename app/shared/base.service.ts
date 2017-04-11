@@ -20,7 +20,7 @@ export class BaseService {
 
     protected list<R>(url: string, params: StringMap): Observable<R[]> {
         let queryParams: URLSearchParams = new URLSearchParams();
-        for(let key of Object.keys(params)){
+        for (let key of Object.keys(params)) {
             queryParams.set(key, params[key]);
         }
 
