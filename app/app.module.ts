@@ -5,8 +5,10 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent }  from './app.component';
 
+import { SharedModule } from './shared/shared.module';
+
 @NgModule({
-    imports:[ BrowserModule, HttpModule,
+    imports:[ BrowserModule, HttpModule, SharedModule,
         RouterModule.forRoot([
 
         ], {
