@@ -5,9 +5,8 @@ import {Component} from '@angular/core';
 @Component({
     selector: 'course-management',
     template: `
-        <div class='container'>
-            <router-outlet></router-outlet>
-        </div>
+        <nav-bar> </nav-bar>
+        <router-outlet> </router-outlet>
     `
 })
 

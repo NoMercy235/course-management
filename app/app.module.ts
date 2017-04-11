@@ -6,16 +6,20 @@ import { HttpModule } from '@angular/http';
 import { AppComponent }  from './app.component';
 
 import { SharedModule } from './shared/shared.module';
+import { UserModule } from './users/user.module';
+import { CourseModule } from './courses/course.module';
+
+import { NavbarComponent } from './nav/navbar.component';
 
 @NgModule({
-    imports:[ BrowserModule, HttpModule, SharedModule,
+    imports:[ BrowserModule, HttpModule, SharedModule, UserModule, CourseModule,
         RouterModule.forRoot([
-
+            { path: '', redirectTo: 'user', pathMatch: 'full' }
         ], {
             useHash: true
         })
     ],
-    declarations: [ AppComponent ],
+    declarations: [ AppComponent, NavbarComponent ],
     bootstrap: [ AppComponent ],
     providers: [ HttpModule ]
 })
