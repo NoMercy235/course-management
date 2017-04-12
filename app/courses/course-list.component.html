@@ -1,1 +1,21 @@
-Courses
+<div class="table-responsive">
+    <table class="table table-condensed table-striped">
+        <tr>
+            <th> # </th>
+            <th> Title </th>
+            <th> Occupancy </th>
+            <th> Actions </th>
+        </tr>
+        <tr *ngFor='let course of courses; let i = index'>
+            <td>{{ i + 1 }}</td>
+            <td>{{ course.title }}</td>
+            <td> 
+                <cm-progress-bar *ngIf="course.candidates.length" [currentValue]="course.candidates.length" [maxValue]="course.candidate_limit"></cm-progress-bar>
+                <span *ngIf="!course.candidates.length"> No candidates </span>
+            </td>
+            <td>
+                <!--TODO: join now?-->
+            </td>
+        </tr>
+    </table>
+</div>

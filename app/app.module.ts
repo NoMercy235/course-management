@@ -12,7 +12,7 @@ import { CourseModule } from './courses/course.module';
 import { NavbarComponent } from './nav/navbar.component';
 
 @NgModule({
-    imports:[ BrowserModule, HttpModule, SharedModule, UserModule, CourseModule,
+    imports: [ SharedModule, HttpModule, UserModule, CourseModule,
         RouterModule.forRoot([
             { path: '', redirectTo: 'user', pathMatch: 'full' }
         ], {

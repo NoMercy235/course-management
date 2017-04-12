@@ -1,3 +1,6 @@
+import { APIResponse } from '../shared/response.model';
+import { Course } from './course.model';
+import { CourseService } from './course.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -5,7 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class CourseListComponent implements OnInit {
-    constructor() { }
+    public courses: Course[];
 
-    ngOnInit() { }
+    constructor(
+        private _courseService: CourseService
+    ) { }
+
+    ngOnInit() {
+        this._courseService.list({}).subscribe((data: APIResponse) => {
+            this.courses = data.data.courses;
+        });
+    }
 }
