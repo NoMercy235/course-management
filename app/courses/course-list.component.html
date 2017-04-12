@@ -1,4 +1,4 @@
-<div class="table-responsive">
+<div class="table-responsive text-center">
     <table class="table table-condensed table-striped">
         <tr>
             <th> # </th>
@@ -9,13 +9,21 @@
             <th> Actions </th>
         </tr>
         <tr *ngFor='let course of courses; let i = index'>
-            <td>{{ i + 1 }} </td>
-            <td>{{ course.title }} </td>
-            <td>{{ (course.begin | millisecondsDate) | date: 'short' }} </td>
-            <td>{{ (course.end | millisecondsDate) | date: 'short' }} </td>
+            <td>
+                <span class="text-muted initialism"> {{ i + 1 }} </span>
+            </td>
+            <td>
+                <span> {{ course.title }} </span>
+            </td>
+            <td> 
+                <span class="text-muted initialism"> {{ (course.begin | millisecondsDate) | date: 'short' }} </span>
+            </td>
+            <td>
+                <span class="text-muted initialism"> {{ (course.end | millisecondsDate) | date: 'short' }} </span> 
+            </td>
             <td>
                 <cm-progress-bar *ngIf="course.candidates.length" [currentValue]="course.candidates.length" [maxValue]="course.candidate_limit"></cm-progress-bar>
-                <span *ngIf="!course.candidates.length"> No candidates </span>
+                <span *ngIf="!course.candidates.length" class="text-info"> No candidates </span>
             </td>
             <td>
                 <!--TODO: join now?-->

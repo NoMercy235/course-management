@@ -15,7 +15,6 @@ export class ProgressBarComponent implements OnInit {
     @Input() maxValue: number;
     @Input() label?: string;
 
-    private ranges = [0, 50, 80];
     private percent: number;
 
     constructor() { }
