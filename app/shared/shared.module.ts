@@ -5,13 +5,14 @@ import { FormsModule }  from '@angular/forms';
 import { Http, Response } from '@angular/http';
 
 import { COMPONENTS } from './components';
+import { PIPES } from './pipes';
 
 import { BaseService } from './base.service';
 
 @NgModule({
     imports: [ CommonModule, BrowserModule, FormsModule ],
-    declarations: [ COMPONENTS ],
-    exports: [ CommonModule, BrowserModule, FormsModule, COMPONENTS ],
+    declarations: [ COMPONENTS, PIPES ],
+    exports: [ CommonModule, BrowserModule, FormsModule, COMPONENTS, PIPES ],
     providers: [ BaseService ]
 })
 export class SharedModule {

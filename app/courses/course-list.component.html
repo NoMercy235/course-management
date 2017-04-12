@@ -3,13 +3,17 @@
         <tr>
             <th> # </th>
             <th> Title </th>
+            <th> Begins on: </th>
+            <th> Ends on: </th>
             <th> Occupancy </th>
             <th> Actions </th>
         </tr>
         <tr *ngFor='let course of courses; let i = index'>
-            <td>{{ i + 1 }}</td>
-            <td>{{ course.title }}</td>
-            <td> 
+            <td>{{ i + 1 }} </td>
+            <td>{{ course.title }} </td>
+            <td>{{ (course.begin | millisecondsDate) | date: 'short' }} </td>
+            <td>{{ (course.end | millisecondsDate) | date: 'short' }} </td>
+            <td>
                 <cm-progress-bar *ngIf="course.candidates.length" [currentValue]="course.candidates.length" [maxValue]="course.candidate_limit"></cm-progress-bar>
                 <span *ngIf="!course.candidates.length"> No candidates </span>
             </td>
