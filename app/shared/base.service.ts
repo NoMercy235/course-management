@@ -9,16 +9,16 @@ interface StringMap { [s: string]: string; }
 export class BaseService {
     protected _baseUrl: string = SharedModule.API_URL;
     protected _baseOptons: RequestOptions = new RequestOptions({
-        withCredentials: true, // TODO: most likely wont be needed since there's no authentication
+        // withCredentials: true, // TODO: most likely wont be needed since there's no authentication
         headers: new Headers({
-            'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': true // TODO: check if it'll be needed
+            'Content-Type': 'application/json'
+            // 'Access-Control-Allow-Origin': true // TODO: check if it'll be needed
         })
     });
 
     constructor (protected _http: Http) { }
 
-    protected list<R>(url: string, params: StringMap): Observable<R[]> {
+    protected list<R>(url: string, params: StringMap): Observable<R> {
         let queryParams: URLSearchParams = new URLSearchParams();
         for (let key of Object.keys(params)) {
             queryParams.set(key, params[key]);
@@ -27,7 +27,7 @@ export class BaseService {
         let options = new RequestOptions(this._baseOptons);
         options.search = queryParams;
 
-        return this._http.get(url, options).map((response: Response) => <R[]>response.json())
+        return this._http.get(url, options).map((response: Response) => <R>response.json())
             .catch(this.handleError);
     }
 
