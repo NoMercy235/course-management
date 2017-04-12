@@ -4,7 +4,7 @@ import { Component, Input, OnInit } from '@angular/core';
     selector: 'cm-progress-bar',
     template: `
         <div class="progress">
-            <div class="progress-bar" [ngClass]="getClasses()" role="progressbar" [attr.aria-valuenow]="percent" aria-valuemin="0" aria-valuemax="100" [style.width]="percent">
+            <div class="progress-bar" [ngClass]="getClasses()" role="progressbar" [attr.aria-valuenow]="percent" aria-valuemin="0" aria-valuemax="100" [style.width]="percent+ '%'">
                 {{ label }}
             </div>
         </div>
