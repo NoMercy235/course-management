@@ -4,7 +4,16 @@ import { CourseService } from './course.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-    template: require('./course-list.component.html')
+    template: `
+        <div>
+            <div *ngIf="courses && courses.length">
+                <div *ngFor='let course of courses; let i = index'>
+                    <cm-course-thumbnail [course]="course"></cm-course-thumbnail>
+                </div>
+            </div>
+            <cm-no-results-found *ngIf="courses && !courses.length"> </cm-no-results-found>
+        </div>
+    `
 })
 
 export class CourseListComponent implements OnInit {
@@ -14,9 +23,10 @@ export class CourseListComponent implements OnInit {
         private _courseService: CourseService
     ) { }
 
-    ngOnInit() {
+    ngOnInit(): void {
         this._courseService.list({}).subscribe((data: APIResponse) => {
             this.courses = data.data.courses;
+
         });
     }
 }

@@ -1,5 +1,4 @@
 import { APIResponse } from '../shared/response.model';
-import { Course } from './course.model';
 import { Observable } from 'rxjs/Rx';
 import { Http } from '@angular/http';
 import { BaseService } from '../shared/base.service';

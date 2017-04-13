@@ -1,3 +1,6 @@
+import { UserService } from '../users/user.service';
+import { CourseThumbnailComponent } from './course-thumbnail.component';
+import { CourseAddUserComponent } from './course-add-user.component';
 import { SharedModule } from '../shared/shared.module';
 import { CourseService } from './course.service';
 import { RouterModule } from '@angular/router';
@@ -12,7 +15,9 @@ import { CourseListComponent } from './course-list.component';
         ])
     ],
     exports: [],
-    declarations: [ CourseListComponent ],
-    providers: [ CourseService ],
+    declarations: [
+        CourseListComponent, CourseAddUserComponent, CourseThumbnailComponent
+    ],
+    providers: [ CourseService, UserService ],
 })
 export class CourseModule { }

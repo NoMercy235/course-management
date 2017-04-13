@@ -11,6 +11,16 @@
     height: 100%;
 }
 
+.modal {
+    background: rgba(0,0,0,0.6);
+}
+
+.course-thumbnail {
+    background: rgba(0,0,0,0.2);
+    min-height: 150px;
+    margin: 10px;
+}
+
 html {
     position: relative;
     min-height: 100%;
@@ -18,10 +28,11 @@ html {
 
 body {
     margin: 0 0 100px; /* bottom = footer height */
+    /*background: #2b3e50;*/
 }
 
 footer {
-    background-color: lightskyblue;
+    background-color: #2b3e50;
     position: absolute;
     left: 0;
     bottom: 0;
@@ -29,3 +40,11 @@ footer {
     width: 100%;
     overflow:hidden;
 }
+/*
+h1, h2, h3, h4, h5, h6 {
+    color: white;
+}
+
+label {
+    color: cccccc;
+}*/

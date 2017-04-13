@@ -6,6 +6,7 @@ import { Http, Response } from '@angular/http';
 
 import { COMPONENTS } from './components';
 import { PIPES } from './pipes';
+import { SERVICES } from './services';
 
 import { BaseService } from './base.service';
 
@@ -13,7 +14,7 @@ import { BaseService } from './base.service';
     imports: [ CommonModule, BrowserModule, FormsModule ],
     declarations: [ COMPONENTS, PIPES ],
     exports: [ CommonModule, BrowserModule, FormsModule, COMPONENTS, PIPES ],
-    providers: [ BaseService ]
+    providers: [ BaseService, SERVICES ]
 })
 export class SharedModule {
     static API_URL: string = 'https://private-anon-6b84098792-coursemgmt.apiary-mock.com/';
