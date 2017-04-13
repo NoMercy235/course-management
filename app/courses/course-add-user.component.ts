@@ -41,7 +41,6 @@ export class CourseAddUserComponent implements OnInit {
     @Output() addNewUser = new EventEmitter();
 
     public users: User[];
-    public pagination;
     public selectedUser: User;
     public user: User;
 
@@ -55,7 +54,6 @@ export class CourseAddUserComponent implements OnInit {
     showModal(): void {
         this._userService.list({}).subscribe((data: APIResponse) => {
             this.users = data.data.users;
-            this.pagination = data.data.pagination;
         });
         this.modal.show();
     }
