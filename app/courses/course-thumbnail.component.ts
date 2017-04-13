@@ -18,7 +18,9 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit } 
                 </div>
             </div>
             <div class="col-md-12">
-                <label> Occupancy </label> | <cm-course-add-user [course]="course" (addNewUser)="onUserAdded($event)"></cm-course-add-user>
+                <label> Occupancy </label> |
+                <cm-course-add-user [course]="course" (addNewUser)="onUserAdded($event)"></cm-course-add-user>
+                <cm-course-remove-user [course]="course" (removeUser)="onUserRemoved($event)"></cm-course-remove-user>
             </div>
             <br />
             <div class="col-md-12">
@@ -39,5 +41,11 @@ export class CourseThumbnailComponent implements OnInit {
 
     onUserAdded(user: User): void {
         this.course.candidates.push(user);
+    }
+
+    onUserRemoved(userId: User): void {
+        this.course.candidates = this.course.candidates.filter(el => el.id !== userId);
+        console.log(this.course.candidates);
+        console.log(userId);
     }
 }
