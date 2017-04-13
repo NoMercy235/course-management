@@ -47,8 +47,6 @@ export class CourseAddUserComponent implements OnInit {
         this._userService.list({}).subscribe((data: APIResponse) => {
             this.users = data.data.users;
             this.pagination = data.data.pagination;
-            console.log(this.users);
-            console.log(this.pagination);
         });
         this.modal.show();
     }
