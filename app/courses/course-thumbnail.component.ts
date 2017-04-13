@@ -26,7 +26,7 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit } 
             <div class="col-md-12">
                 <cm-progress-bar *ngIf="course.candidates.length" [currentValue]="course.candidates.length" [maxValue]="course.candidate_limit"></cm-progress-bar>
                 <span *ngIf="!course.candidates.length" class="text-info">
-                    No candidates. <a href=""> Add one? </a>
+                    No candidates.
                 </span>
             </div>
         </div>

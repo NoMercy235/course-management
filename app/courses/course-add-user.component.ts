@@ -21,7 +21,7 @@ import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angu
                 <div class="cm-modal-body">
                     <div class="col-md-12">
                         <typeahead style="width: 100%" [(ngModel)]="user"
-                            [list]="users" [searchProperty]="'first_name'" [displayProperty]="'first_name'" [maxSuggestions]="10" (suggestionSelected)="userSelected($event)"
+                            [list]="users" [searchProperty]="'name'" [displayProperty]="'name'" [maxSuggestions]="10" (suggestionSelected)="userSelected($event)"
                             placeholder="Search user">
                         </typeahead>
                     </div>
@@ -53,6 +53,9 @@ export class CourseAddUserComponent implements OnInit {
 
     showModal(): void {
         this._userService.list({}).subscribe((data: APIResponse) => {
+            data.data.users.forEach(el => {
+                el.name = el.first_name + ' ' + el.last_name;
+            });
             this.users = data.data.users;
         });
         this.modal.show();
