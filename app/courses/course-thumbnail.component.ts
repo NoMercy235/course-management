@@ -10,9 +10,12 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit } 
                 <h3> {{ course.title }} </h3>
             </div>
             <div class="col-md-12">
-                <span class="text-muted"> {{ (course.begin | millisecondsDate) | date:medium }} </span>
-                -
-                <span class="text-muted"> {{ (course.begin | millisecondsDate) | date:medium }} </span>
+                <div class="col-md-12">
+                    From: <span class="text-muted"> {{ (course.begin | millisecondsDate) | date: 'medium' }} </span>
+                </div>
+                <div class="col-md-12">
+                    To: <span class="text-muted"> {{ (course.end | millisecondsDate) | date: 'medium' }} </span>
+                </div>
             </div>
             <div class="col-md-12">
                 <label> Occupancy </label> | <cm-course-add-user [course]="course" (addNewUser)="onUserAdded($event)"></cm-course-add-user>
