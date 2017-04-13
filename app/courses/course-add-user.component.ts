@@ -19,17 +19,19 @@ import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angu
                     <h3> Register User </h3>
                 </div>
                 <div class="cm-modal-body">
-                    <div class="col-md-12">
-                        <typeahead style="width: 100%" [(ngModel)]="user"
-                            [list]="users" [searchProperty]="'name'" [displayProperty]="'name'" [maxSuggestions]="10" (suggestionSelected)="userSelected($event)"
-                            placeholder="Search user">
-                        </typeahead>
-                    </div>
+                    <form #newUserForm="ngForm" (ngSubmit)="registerUser()" novalidate autocomplete="off">
+                        <div class="col-md-12">
+                            <typeahead style="width: 100%" [(ngModel)]="user" name="user"
+                                [list]="users" [searchProperty]="'name'" [displayProperty]="'name'" [maxSuggestions]="10" (suggestionSelected)="userSelected($event)"
+                                placeholder="Search user">
+                            </typeahead>
+                        </div>
+                    </form>
                     <i class="clearfix"> </i>
                 </div>
                 <div class="cm-modal-footer">
                     <button type="button" class="btn btn-default" (click)="hideModal()">Cancel</button>
-                    <button type="button" class="btn btn-primary" (click)="registerUser()">Ok</button>
+                    <button type="button" class="btn btn-primary" (click)="newUserForm.ngSubmit.emit()">Ok</button>
                 </div>
             </cm-modal>
         </span>
