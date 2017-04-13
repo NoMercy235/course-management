@@ -1,5 +1,6 @@
+import { User } from '../users/user.model';
 import { Course } from './course.model';
-import { Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 
 @Component({
     selector: 'cm-course-thumbnail',
@@ -14,7 +15,7 @@ import { Component, Input, OnInit } from '@angular/core';
                 <span class="text-muted"> {{ (course.begin | millisecondsDate) | date:medium }} </span>
             </div>
             <div class="col-md-12">
-                <label> Occupancy </label> | <cm-course-add-user [courseId]="course.id"></cm-course-add-user>
+                <label> Occupancy </label> | <cm-course-add-user [course]="course" (addNewUser)="onUserAdded($event)"></cm-course-add-user>
             </div>
             <br />
             <div class="col-md-12">
@@ -29,7 +30,11 @@ import { Component, Input, OnInit } from '@angular/core';
 export class CourseThumbnailComponent implements OnInit {
     @Input() course: Course;
 
-    constructor() { }
+    constructor( ) { }
 
     ngOnInit() { }
+
+    onUserAdded(user: User): void {
+        this.course.candidates.push(user);
+    }
 }

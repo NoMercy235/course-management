@@ -28,3 +28,5 @@ import '@angular/platform-browser';
 import '@angular/platform-browser-dynamic';
 import '@angular/router';
 // Angular
+
+import 'ng2-typeahead';

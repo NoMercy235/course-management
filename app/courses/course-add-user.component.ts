@@ -1,30 +1,35 @@
+import { Course } from './course.model';
+import { CourseService } from './course.service';
 import { User } from '../users/user.model';
 import { APIResponse } from '../shared/response.model';
 import { UserService } from '../users/user.service';
 import { ModalComponent } from '../shared/components/modal.component';
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 
 @Component({
     selector: 'cm-course-add-user',
     template: `
         <span>
-            <button class="btn btn-default btn-sm" (click)="showModal()">
+            <button [disabled]="course.candidates.length >= course.candidate_limit" class="btn btn-default btn-sm" (click)="showModal()">
                 <i class="glyphicon glyphicon-plus"></i>
             </button>
 
             <cm-modal>
-                <div class="app-modal-header">
-                    Register user
+                <div class="cm-modal-header text-left">
+                    <h3> Register User </h3>
                 </div>
-                <div class="app-modal-body">
-                    <div class="col-md-12" *ngFor="let user of users; let i = index;">
-                        {{ user }}
+                <div class="cm-modal-body">
+                    <div class="col-md-12">
+                        <typeahead style="width: 100%" [(ngModel)]="user"
+                            [list]="users" [searchProperty]="'first_name'" [displayProperty]="'first_name'" [maxSuggestions]="10" (suggestionSelected)="userSelected($event)"
+                            placeholder="Search user">
+                        </typeahead>
                     </div>
                     <i class="clearfix"> </i>
                 </div>
-                <div class="app-modal-footer">
-                    <button type="button" class="btn btn-default" (click)="modal.hide()">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                <div class="cm-modal-footer">
+                    <button type="button" class="btn btn-default" (click)="hideModal()">Cancel</button>
+                    <button type="button" class="btn btn-primary" (click)="registerUser()">Ok</button>
                 </div>
             </cm-modal>
         </span>
@@ -32,13 +37,17 @@ import { Component, Input, OnInit, ViewChild } from '@angular/core';
 })
 export class CourseAddUserComponent implements OnInit {
     @ViewChild(ModalComponent) public readonly modal: ModalComponent;
-    @Input() courseId: number;
+    @Input() course: Course;
+    @Output() addNewUser = new EventEmitter();
 
     public users: User[];
     public pagination;
+    public selectedUser: User;
+    public user: User;
 
     constructor(
-        private _userService: UserService
+        private _userService: UserService,
+        private _courseService: CourseService
     ) { }
 
     ngOnInit() { }
@@ -49,5 +58,22 @@ export class CourseAddUserComponent implements OnInit {
             this.pagination = data.data.pagination;
         });
         this.modal.show();
+    }
+
+    hideModal(): void {
+        this.user = this.selectedUser = null;
+        this.modal.hide();
+    }
+
+    userSelected(user: User): void {
+        this.selectedUser = user;
+    }
+
+    registerUser(): void {
+        if (!this.selectedUser) return;
+        this._courseService.registerUser(this.course.id, this.selectedUser.id).subscribe(response => {
+            this.addNewUser.emit(this.selectedUser);
+            this.hideModal();
+        });
     }
 }

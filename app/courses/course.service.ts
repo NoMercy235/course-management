@@ -1,6 +1,6 @@
 import { APIResponse } from '../shared/response.model';
 import { Observable } from 'rxjs/Rx';
-import { Http } from '@angular/http';
+import { Http, Response } from '@angular/http';
 import { BaseService } from '../shared/base.service';
 import { Injectable } from '@angular/core';
 
@@ -16,5 +16,14 @@ export class CourseService extends BaseService {
 
     public list(filters): Observable<any> {
         return super.list<APIResponse>(this._url, filters);
+    }
+
+    public registerUser(courseId: number, userId: number): Observable<any> {
+        return this._http.post(
+            this._url + '/' + courseId + '/register',
+            { id_user: userId },
+            this._baseOptons
+        ).map((response: Response) => <APIResponse>response.json())
+        .catch(this.handleError);
     }
 }
