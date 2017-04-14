@@ -21,10 +21,6 @@ export class CourseSaveComponent implements OnInit {
     public end: FormControl;
     public saveCourseForm: FormGroup;
 
-    private myDatePickerOptions: IMyOptions = {
-        dateFormat: 'dd/mm/yyyy',
-    };
-
     constructor(
         private _courseService: CourseService
     ) { }
