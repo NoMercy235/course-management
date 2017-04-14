@@ -40,4 +40,13 @@ export class UserListComponent implements OnInit {
         this.pagination.current_page = page;
         this.getUsers({ page: page });
     }
+
+    addUser(user: User): void {
+        this.users.push(user);
+    }
+
+    updateUser(user: User): void {
+        let index = this.users.findIndex(el => el.id === user.id);
+        this.users[index] = user;
+    }
 }

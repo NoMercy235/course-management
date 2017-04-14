@@ -5,7 +5,13 @@
                 <th> # </th>
                 <th> Name </th>
                 <th> Gender </th>
-                <th> </th>
+                <th class="text-right"> 
+                    <cm-user-save (userSaved)="addUser($event)">
+                        <button type="button" class="btn btn-default">
+                            <i class="glyphicon glyphicon-plus"> </i>
+                        </button>
+                    </cm-user-save>
+                </th>
             </tr>
         </thead>
         <tbody>
@@ -20,9 +26,11 @@
                     <span> {{ user.gender }} </span>
                 </td>
                 <td class="text-right">
-                    <button type="button" class="btn btn-default" (click)="edit(user)">
-                        <i class="glyphicon glyphicon-user"> </i>
-                    </button>
+                    <cm-user-save [user]="user" (userSaved)="updateUser($event)">
+                        <button type="button" class="btn btn-default">
+                            <i class="glyphicon glyphicon-user"> </i>
+                        </button>
+                    </cm-user-save>
                 </td>
             </tr>
         </tbody>

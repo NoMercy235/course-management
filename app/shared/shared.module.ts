@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule }  from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Http, Response } from '@angular/http';
 
 import { COMPONENTS } from './components';
@@ -11,9 +11,9 @@ import { SERVICES } from './services';
 import { BaseService } from './base.service';
 
 @NgModule({
-    imports: [ CommonModule, BrowserModule, FormsModule ],
+    imports: [ CommonModule, BrowserModule, FormsModule, ReactiveFormsModule ],
     declarations: [ COMPONENTS, PIPES ],
-    exports: [ CommonModule, BrowserModule, FormsModule, COMPONENTS, PIPES ],
+    exports: [ CommonModule, BrowserModule, FormsModule, ReactiveFormsModule, COMPONENTS, PIPES ],
     providers: [ BaseService, SERVICES ]
 })
 export class SharedModule {
