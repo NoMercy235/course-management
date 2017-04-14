@@ -18,7 +18,7 @@
                     <div class="form-group col-md-6" [ngClass]="{'error': !validateControl(candidate_limit) }">
                         <cm-required></cm-required><label for="candidate_limit">Candidate Limit:</label>
                         <em *ngIf="candidate_limit.invalid && candidate_limit.dirty">Required</em>
-                        <input formControlName="candidate_limit" required id="candidate_limit" type="number" class="form-control" placeholder="Candidate Limit"
+                        <input formControlName="candidate_limit" required id="candidate_limit" type="number" class="form-control" placeholder="Candidate Limit" min="1"
                         />
                     </div>
                </form>
@@ -26,7 +26,7 @@
         </div>
         <div class="cm-modal-footer">
             <button type="button" class="btn btn-default" (click)="modal.hide()">Cancel</button>
-            <button type="button" class="btn btn-primary" (click)="saveCourse()">Ok</button>
+            <button type="button" class="btn btn-primary" [disabled]="saveCourseForm.invalid" (click)="saveCourse()">Ok</button>
         </div>
     </cm-modal>
 </span>
