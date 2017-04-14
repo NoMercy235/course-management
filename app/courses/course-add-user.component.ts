@@ -9,39 +9,7 @@ import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angu
 
 @Component({
     selector: 'cm-course-add-user',
-    template: `
-        <span>
-            <button [disabled]="course.candidates.length >= course.candidate_limit" class="btn btn-default btn-sm" (click)="showModal()">
-                <i class="glyphicon glyphicon-plus"></i>
-            </button>
-
-            <cm-modal>
-                <div class="cm-modal-header text-left">
-                    <h3> Register User </h3>
-                </div>
-                <div class="cm-modal-body">
-                    <form #newUserForm="ngForm" (ngSubmit)="registerUser()" novalidate autocomplete="off">
-                        <div class="col-md-12">
-                            <label *ngIf="displayUser && !selectedUser"> No user named <span class="text-danger"> {{ displayUser }} </span> </label>
-                            <label *ngIf="selectedUser"> User selected! </label>
-                        </div>
-                        <div class="col-md-12">
-                            <typeahead style="width: 100%" [(ngModel)]="user" name="user"
-                                [list]="users" [searchProperty]="'name'" [displayProperty]="'name'" [maxSuggestions]="10" (suggestionSelected)="userSelected($event)"
-                                (keyup)="updateModel($event.target.value)"
-                                placeholder="Search user">
-                            </typeahead>
-                        </div>
-                    </form>
-                    <i class="clearfix"> </i>
-                </div>
-                <div class="cm-modal-footer">
-                    <button type="button" class="btn btn-default" (click)="hideModal()">Cancel</button>
-                    <button type="button" class="btn btn-primary" (click)="newUserForm.ngSubmit.emit()">Ok</button>
-                </div>
-            </cm-modal>
-        </span>
-    `
+    template: require('./course-add-user.component.html')
 })
 export class CourseAddUserComponent implements OnInit {
     @ViewChild(ModalComponent) public readonly modal: ModalComponent;

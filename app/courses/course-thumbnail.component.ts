@@ -4,33 +4,7 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit } 
 
 @Component({
     selector: 'cm-course-thumbnail',
-    template: `
-        <div class="col-lg-3 col-md-4 col-sm-6 text-center course-thumbnail">
-            <div class="col-md-12">
-                <h3> {{ course.title }} </h3>
-            </div>
-            <div class="col-md-12">
-                <div class="col-md-12">
-                    From: <span class="text-muted"> {{ (course.begin | millisecondsDate) | date: 'medium' }} </span>
-                </div>
-                <div class="col-md-12">
-                    To: <span class="text-muted"> {{ (course.end | millisecondsDate) | date: 'medium' }} </span>
-                </div>
-            </div>
-            <div class="col-md-12">
-                <label> Occupancy </label> |
-                <cm-course-add-user [course]="course" (addNewUser)="onUserAdded($event)"></cm-course-add-user>
-                <cm-course-remove-user [course]="course" (removeUser)="onUserRemoved($event)"></cm-course-remove-user>
-            </div>
-            <br />
-            <div class="col-md-12">
-                <cm-progress-bar *ngIf="course.candidates.length" [currentValue]="course.candidates.length" [maxValue]="course.candidate_limit"></cm-progress-bar>
-                <span *ngIf="!course.candidates.length" class="text-info">
-                    No candidates.
-                </span>
-            </div>
-        </div>
-    `
+    template: require('./course-thumbnail.component.html')
 })
 export class CourseThumbnailComponent implements OnInit {
     @Input() course: Course;
