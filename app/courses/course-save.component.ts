@@ -1,5 +1,4 @@
 import { Course } from './course.model';
-import { IMyOptions } from 'mydatepicker';
 import { CourseService } from './course.service';
 import { APIResponse } from '../shared/response.model';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
