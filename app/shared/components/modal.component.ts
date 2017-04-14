@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
     template: `
     <div class="modal fade" tabindex="-1" [ngClass]="{'in': visibleAnimate}"
          [ngStyle]="{'display': visible ? 'block' : 'none', 'opacity': visibleAnimate ? 1 : 0}">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
                     <ng-content select=".cm-modal-header"></ng-content>
