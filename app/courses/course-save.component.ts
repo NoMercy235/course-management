@@ -54,9 +54,17 @@ export class CourseSaveComponent implements OnInit {
         return !(control.invalid && control.dirty);
     }
 
+    minValidator(nr: number): (FormControl) => {[key: string]: any} {
+        return (control: FormControl): {[key: string]: any} => {
+            if (!control.value) return null;
+            return control.value < nr ? { 'minValue': nr } : null;
+        };
+    }
+
     initForm(): void {
         this.title = new FormControl(this.course ? this.course.title : '', Validators.required);
-        this.candidate_limit = new FormControl(this.course ? this.course.candidate_limit : '', Validators.required);
+        this.candidate_limit = new FormControl(this.course ? this.course.candidate_limit : '', 
+            [ Validators.required, this.minValidator(1) ]);
         this.begin = new FormControl(this.course ? this.course.begin : '', Validators.required);
         this.end = new FormControl(this.course ? this.course.end : '', Validators.required);
         this.saveCourseForm = new FormGroup({
