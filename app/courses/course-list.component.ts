@@ -6,17 +6,25 @@ import { Component, OnInit } from '@angular/core';
 @Component({
     template: `
         <div>
+            <div class="col-md-12">
+                <h2> 
+                    Course Overview | 
+                    <span>
+                        <cm-course-save (courseSaved)="addCourse($event)">
+                            <button class="btn btn-default btn-lg">
+                                <i class="glyphicon glyphicon-plus"> </i>
+                            </button>
+                        </cm-course-save>
+                    </span>
+                </h2>
+            </div>
+            <hr />
             <div *ngIf="courses && courses.length">
                 <div *ngFor='let course of courses; let i = index'>
                     <cm-course-thumbnail [course]="course"></cm-course-thumbnail>
                 </div>
             </div>
             <cm-no-results-found *ngIf="courses && !courses.length"> </cm-no-results-found>
-            <cm-course-save>
-                <div class="col-lg-3 col-md-4 col-sm-6 text-center course-thumbnail">
-                    <i class="glyphicon glyphicon-plus" style=" font-size: 11em;"> </i>
-                </div>
-            </cm-course-save>
         </div>
     `
 })
@@ -32,5 +40,9 @@ export class CourseListComponent implements OnInit {
         this._courseService.list({}).subscribe((data: APIResponse) => {
             this.courses = data.data.courses;
         });
+    }
+
+    addCourse(course: Course): void {
+        this.courses.push(course);
     }
 }

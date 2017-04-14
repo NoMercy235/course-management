@@ -51,18 +51,22 @@ export class CourseSaveComponent implements OnInit {
         this.modal.show();
     }
 
-    // saveUser(): void {
-    //     let user = {
-    //         id: this.user ? this.user.id : undefined,
-    //         first_name: this.saveUserForm.value.first_name,
-    //         last_name: this.saveUserForm.value.last_name,
-    //         gender: this.saveUserForm.value.gender
-    //     }
-    //     this._userService.saveUser(user).subscribe((response: APIResponse) => {
-    //         if (response.data) user.id = response.data.id;
-    //         this.userSaved.emit(user);
-    //         this.modal.hide();
-    //         this.saveUserForm.reset();
-    //     });
-    // }
+    saveCourse(): void {
+        let course = {
+            id: this.course ? this.course.id : undefined,
+            title: this.saveCourseForm.value.title,
+            candidate_limit: this.saveCourseForm.value.candidate_limit,
+            begin: this.saveCourseForm.value.begin,
+            end: this.saveCourseForm.value.end,
+            candidates: []
+        }
+        course.begin = 1000000000;
+        course.end = 1000000000;
+        this._courseService.saveCourse(course).subscribe((response: APIResponse) => {
+            if (response.data) course.id = response.data.id;
+            this.courseSaved.emit(course);
+            this.modal.hide();
+            this.saveCourseForm.reset();
+        });
+    }
 }

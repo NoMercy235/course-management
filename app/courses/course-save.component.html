@@ -1,7 +1,7 @@
 <span>
-    <div (click)="showModal()"> 
+    <span (click)="showModal()"> 
         <ng-content></ng-content>
-    </div>
+    </span>
 
     <cm-modal>
         <div class="cm-modal-header text-left">
@@ -26,7 +26,7 @@
         </div>
         <div class="cm-modal-footer">
             <button type="button" class="btn btn-default" (click)="modal.hide()">Cancel</button>
-            <button type="button" class="btn btn-primary" (click)="saveUser()">Ok</button>
+            <button type="button" class="btn btn-primary" (click)="saveCourse()">Ok</button>
         </div>
     </cm-modal>
 </span>
