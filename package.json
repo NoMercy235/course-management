@@ -19,6 +19,7 @@
     "@angular/platform-browser": "2.0.0",
     "@angular/platform-browser-dynamic": "2.0.0",
     "@angular/router": "3.0.0",
+    "@ngui/datetime-picker": "^0.16.1",
     "bootstrap": "latest",
     "jquery": "^3.1.1",
     "ng2-typeahead": "^1.2.0",

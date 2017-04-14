@@ -1,4 +1,5 @@
 import { Course } from './course.model';
+import { IMyOptions } from 'mydatepicker';
 import { CourseService } from './course.service';
 import { APIResponse } from '../shared/response.model';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
@@ -21,6 +22,10 @@ export class CourseSaveComponent implements OnInit {
     public end: FormControl;
     public saveCourseForm: FormGroup;
 
+    private myDatePickerOptions: IMyOptions = {
+        dateFormat: 'dd/mm/yyyy',
+    };
+
     constructor(
         private _courseService: CourseService
     ) { }
@@ -28,6 +33,22 @@ export class CourseSaveComponent implements OnInit {
     ngOnInit() {
         this.initForm();
      }
+     
+     setDate(): void {
+        // Set today date using the setValue function
+        let date = new Date();
+        this.saveCourseForm.setValue({begin: {
+        date: {
+            year: date.getFullYear(),
+            month: date.getMonth() + 1,
+            day: date.getDate()}
+        }});
+        console.log()
+    }
+
+    clearDate(): void {
+        this.saveCourseForm.setValue({myDate: ''});
+    }
 
     validateControl(control: FormControl): boolean {
         return !(control.invalid && control.dirty);
@@ -56,12 +77,10 @@ export class CourseSaveComponent implements OnInit {
             id: this.course ? this.course.id : undefined,
             title: this.saveCourseForm.value.title,
             candidate_limit: this.saveCourseForm.value.candidate_limit,
-            begin: this.saveCourseForm.value.begin,
-            end: this.saveCourseForm.value.end,
+            begin: (new Date(this.saveCourseForm.value.begin)).getTime(),
+            end: (new Date(this.saveCourseForm.value.end)).getTime(),
             candidates: []
-        }
-        course.begin = 1000000000;
-        course.end = 1000000000;
+        };
         this._courseService.saveCourse(course).subscribe((response: APIResponse) => {
             if (response.data) course.id = response.data.id;
             this.courseSaved.emit(course);

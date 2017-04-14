@@ -21,6 +21,16 @@
                         <input formControlName="candidate_limit" required id="candidate_limit" type="number" class="form-control" placeholder="Candidate Limit" min="1"
                         />
                     </div>
+                    <div class="form-group col-md-6" [ngClass]="{'error': !validateControl(candidate_limit) }">
+                        <cm-required></cm-required><label for="candidate_limit">Stars on:</label>
+                        <em *ngIf="candidate_limit.invalid && candidate_limit.dirty">Required</em>
+                        <input formControlName="begin" name="begin" [(ngModel)]='beginDate' required ngui-datetime-picker class="form-control" placeholder="Starts on:" />
+                    </div>
+                    <div class="form-group col-md-6" [ngClass]="{'error': !validateControl(candidate_limit) }">
+                        <cm-required></cm-required><label for="candidate_limit">Ends on:</label>
+                        <em *ngIf="candidate_limit.invalid && candidate_limit.dirty">Required</em>
+                        <input formControlName="end" name="end" [(ngModel)]='endDate' required ngui-datetime-picker class="form-control" placeholder="Ends on:" />
+                    </div>
                </form>
             <i class="clearfix"> </i>
         </div>
