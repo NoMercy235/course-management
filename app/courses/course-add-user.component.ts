@@ -1,3 +1,4 @@
+import { validateConfig } from '@angular/router/src/config';
 import { Course } from './course.model';
 import { CourseService } from './course.service';
 import { User } from '../users/user.model';
@@ -21,8 +22,13 @@ import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angu
                 <div class="cm-modal-body">
                     <form #newUserForm="ngForm" (ngSubmit)="registerUser()" novalidate autocomplete="off">
                         <div class="col-md-12">
+                            <label *ngIf="displayUser && !selectedUser"> No user named <span class="text-danger"> {{ displayUser }} </span> </label>
+                            <label *ngIf="selectedUser"> User selected! </label>
+                        </div>
+                        <div class="col-md-12">
                             <typeahead style="width: 100%" [(ngModel)]="user" name="user"
                                 [list]="users" [searchProperty]="'name'" [displayProperty]="'name'" [maxSuggestions]="10" (suggestionSelected)="userSelected($event)"
+                                (keyup)="updateModel($event.target.value)"
                                 placeholder="Search user">
                             </typeahead>
                         </div>
@@ -44,7 +50,7 @@ export class CourseAddUserComponent implements OnInit {
 
     public users: User[];
     public selectedUser: User;
-    public user: User;
+    public displayUser: string;
 
     constructor(
         private _userService: UserService,
@@ -52,6 +58,10 @@ export class CourseAddUserComponent implements OnInit {
     ) { }
 
     ngOnInit() { }
+
+    updateModel(val: string): void {
+        this.displayUser = val;
+    }
 
     showModal(): void {
         this._userService.list({}).subscribe((data: APIResponse) => {
@@ -64,7 +74,7 @@ export class CourseAddUserComponent implements OnInit {
     }
 
     hideModal(): void {
-        this.user = this.selectedUser = null;
+        this.selectedUser = null;
         this.modal.hide();
     }
 

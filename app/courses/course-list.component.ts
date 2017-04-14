@@ -12,6 +12,11 @@ import { Component, OnInit } from '@angular/core';
                 </div>
             </div>
             <cm-no-results-found *ngIf="courses && !courses.length"> </cm-no-results-found>
+            <cm-course-save>
+                <div class="col-lg-3 col-md-4 col-sm-6 text-center course-thumbnail">
+                    <i class="glyphicon glyphicon-plus" style=" font-size: 11em;"> </i>
+                </div>
+            </cm-course-save>
         </div>
     `
 })
