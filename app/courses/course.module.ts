@@ -1,3 +1,4 @@
+import { CourseSaveComponent } from './course-save.component';
 import { CourseRemoveUserComponent } from './course-remove-user.component';
 import { UserService } from '../users/user.service';
 import { CourseThumbnailComponent } from './course-thumbnail.component';
@@ -17,7 +18,7 @@ import { CourseListComponent } from './course-list.component';
     ],
     exports: [],
     declarations: [
-        CourseListComponent, CourseAddUserComponent, CourseThumbnailComponent, CourseRemoveUserComponent
+        CourseListComponent, CourseAddUserComponent, CourseThumbnailComponent, CourseRemoveUserComponent, CourseSaveComponent
     ],
     providers: [ CourseService, UserService ],
 })

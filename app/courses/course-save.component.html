@@ -1,0 +1,32 @@
+<span>
+    <div (click)="showModal()"> 
+        <ng-content></ng-content>
+    </div>
+
+    <cm-modal>
+        <div class="cm-modal-header text-left">
+            <h3> {{ course ? 'Update' : 'Create' }} Course </h3>
+        </div>
+        <div class="cm-modal-body text-left">
+               <form [formGroup]="saveCourseForm" novalidate autocomplete="off">
+                    <div class="form-group col-md-6" [ngClass]="{'error': !validateControl(title) }">
+                        <cm-required></cm-required><label for="title">Title:</label>
+                        <em *ngIf="title.invalid && title.dirty">Required</em>
+                        <input formControlName="title" required id="title" type="text" class="form-control" placeholder="Title"
+                        />
+                    </div>
+                    <div class="form-group col-md-6" [ngClass]="{'error': !validateControl(candidate_limit) }">
+                        <cm-required></cm-required><label for="candidate_limit">Candidate Limit:</label>
+                        <em *ngIf="candidate_limit.invalid && candidate_limit.dirty">Required</em>
+                        <input formControlName="candidate_limit" required id="candidate_limit" type="number" class="form-control" placeholder="Candidate Limit"
+                        />
+                    </div>
+               </form>
+            <i class="clearfix"> </i>
+        </div>
+        <div class="cm-modal-footer">
+            <button type="button" class="btn btn-default" (click)="modal.hide()">Cancel</button>
+            <button type="button" class="btn btn-primary" (click)="saveUser()">Ok</button>
+        </div>
+    </cm-modal>
+</span>
