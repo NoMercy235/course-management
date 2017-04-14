@@ -18,7 +18,7 @@ import { Component, OnInit } from '@angular/core';
                     </span>
                 </h2>
             </div>
-            <hr />
+            <cm-searching *ngIf="!courses" class="text-center" [maxIndex]="5"> </cm-searching>
             <div *ngIf="courses && courses.length">
                 <div *ngFor='let course of courses; let i = index'>
                     <cm-course-thumbnail [course]="course"></cm-course-thumbnail>
